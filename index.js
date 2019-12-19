@@ -109,10 +109,10 @@ Baby.prototype.play = function() {
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1.  Global object binding is when the "this"  keyword refers to the  global scope of the document 
+  2.  Implicit Binding  is when the this keyword referst to the object left of a (.) syntax
+  3.  New binding is when "this" refers to the instance  when the object is created inside the constructor function
+  4.  Explicit binding is when you use the .Call() .Bind() .Apply() object and this refers to anything passed with it.
 */
 
 ///////// END OF CHALLENGE /////////
