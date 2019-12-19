@@ -5,6 +5,7 @@
     - Give airplanes the ability to `.takeOff()` and `.land()`:
         + If a plane takes off, its `isFlying` property is set to true.
         + If a plane lands, its `isFlying` property is set to false.
+        sdfsdf
 */
 
 // EXAMPLE SOLUTION CODE:
@@ -12,13 +13,12 @@ function Airplane(name) {
   this.name = name;
   this.isFlying = false;
 }
-Airplane.prototype.takeOff = function () {
+Airplane.prototype.takeOff = function() {
   this.isFlying = true;
 };
-Airplane.prototype.land = function () {
+Airplane.prototype.land = function() {
   this.isFlying = false;
 };
-
 
 /*
 // 👇 COMPLETE YOUR WORK BELOW 👇
@@ -39,9 +39,25 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
 }
+
+Person.prototype.eat = function(someFood) {
+  if (this.stomach.length < 10) {
+    return this.stomach.push(someFood);
+  }
+};
+
+Person.prototype.poop = function() {
+  this.stomach = [];
+  return this.stomach;
+};
+Person.prototype.toString = function() {
+  return `${this.name}, ${this.age}`;
+};
 
 /*
   TASK 2
@@ -57,9 +73,21 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-
+function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
 }
+Car.prototype.fill = function(gallons) {
+  this.tank += gallons;
+};
+//STRETCH
+Car.prototype.drive = function(distance) {
+  this.odometer += distance;
+  this.tank =
+    (this.tank * this.milesPerGallon - distance) / this.milesPerGallon;
+};
 
 /*
   TASK 3
@@ -68,28 +96,41 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
-
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age);
+  this.favoriteToy = favoriteToy;
 }
+Baby.prototype = Object.create(Person.prototype);
+
+Baby.prototype.play = function() {
+  return `Playing with ${this.favoriteToy}`;
+};
 
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1.  Global object binding is when the "this"  keyword refers to the  global scope of the document 
+  2.  Implicit Binding  is when the this keyword referst to the object left of a (.) syntax
+  3.  New binding is when "this" refers to the instance  when the object is created inside the constructor function
+  4.  Explicit binding is when you use the .Call() .Bind() .Apply() object and this refers to anything passed with it.
 */
 
-
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
-if (typeof exports !== 'undefined') {
-  module.exports = module.exports || {}
-  if (Airplane) { module.exports.Airplane = Airplane }
-  if (Person) { module.exports.Person = Person }
-  if (Car) { module.exports.Car = Car }
-  if (Baby) { module.exports.Baby = Baby }
+if (typeof exports !== "undefined") {
+  module.exports = module.exports || {};
+  if (Airplane) {
+    module.exports.Airplane = Airplane;
+  }
+  if (Person) {
+    module.exports.Person = Person;
+  }
+  if (Car) {
+    module.exports.Car = Car;
+  }
+  if (Baby) {
+    module.exports.Baby = Baby;
+  }
 }
